@@ -1,0 +1,141 @@
+:root {
+	--azul-escuro-principal: #0c2d57;
+	--azul-intermed-secundario: #2c62a7;
+	--laranja-principal: #fc6736;
+	--amarelo-secundario: #ffad60;
+	--azul-claro-suave: #eae5ff;
+    --pequena: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    --media: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    --grande: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --suspensao: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    --relevo: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#pagina-metas {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    row-gap: 2rem;
+}
+
+.cabecalho {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	row-gap: 1rem;
+}
+
+#buttonCriar {
+	background-color: var(--azul-escuro-principal);
+	color: white;
+	font-size: 1.2em;
+    transition: ease-out .5s;
+}
+
+#buttonCriar:hover {
+	box-shadow: var(--media);
+}
+
+#formMetas {
+	row-gap: 1rem;
+}
+
+#btnAtualizar {
+	display: none;
+}
+
+#btnAtualizar, #btnSalvar {
+	background-color: var(--azul-escuro-principal);
+	color: white;
+}
+
+.filtros {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 1.2rem;
+	row-gap: 0.8rem;
+}
+	
+#metasAdicionadas .card {
+	border-radius: 10px;
+	box-shadow: var(--pequena);
+	border: none;
+	transition: 0.3s;
+	overflow: hidden;
+	padding: 0.8rem;
+	height: 100%;
+}
+
+#metasAdicionadas .card:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--media);
+}
+
+.card-body {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
+}
+
+progress {
+	width: 100%;
+}
+
+@keyframes progressAnim {
+	0% {width: 0;}
+	100% {width: var(--progress-width);}
+}
+  
+.contribuicaoMensal {
+	font-size: 1rem; 
+  	margin-top: 10px; 
+  	line-height: 1.2;
+  	color: #333;
+ 	text-align: center;
+ 	white-space: normal;
+  	word-wrap: break-word;
+}
+
+#footerCard {
+	flex-wrap:wrap;
+	gap: 0.5rem;
+	border: none;
+	background-color: transparent
+}
+
+.mensagem-comemoracao {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #795fe6;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    text-align: center;
+    z-index: 9999;
+    opacity: 1;
+    animation: fadeOut 2.5s ease forwards, scaleUp 0.5s ease;
+}
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+
+@keyframes scaleUp {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.textoLembrete {
+	color: #0c2d57;
+	max-width: 100%;
+	word-wrap: break-word; 
+	overflow-wrap: break-word; 
+	font-size:0.9rem;
+	line-height:1.2;
+}

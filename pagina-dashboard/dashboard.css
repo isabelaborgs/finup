@@ -1,0 +1,373 @@
+
+/*Cores da marca*/
+:root {
+    /*Paleta de cores principal*/
+	--finup-azul-escuro: #0c2d57;
+	--finup-azul: #2c62a7;
+	--finup-laranja: #fc6736;
+	--finup-amarelo: #ffad60;
+
+    /*Paleta complementar*/
+    --finup-verde-amarelado: #a4a76c;
+    --finup-verde: #49a078;
+    --finup-verde-escuro: #3a7e5e;
+    --finup-laranja-marrom: #c23f13;
+    --finup-vermelho-marrom: #8c1c13;
+    --finup-marrom-escuro: #6a041d;
+
+    /*Box shadows*/
+    --pequena: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    --media: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    --grande: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --suspensao: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    --relevo: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+/*Estilo geral da página*/
+header {
+    z-index: 1;
+}
+
+#dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    row-gap: 2rem;
+}
+
+#conteudoDashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 3rem;
+}
+
+a:any-link {
+    text-decoration: none;
+    color: black;
+}
+
+a:any-link:hover {
+    color: var(--finup-azul);
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/*Estilo das seções*/
+.bloco-secao {
+    display: none;
+}
+
+.secao-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    row-gap: 1rem;
+    height: 100%;   
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--pequena);
+}
+
+#conteudoDashboard .secao-dashboard:hover {
+    box-shadow: var(--media);
+}
+
+.titulo-secao {
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 1rem;
+}
+
+.charts {
+    width: 100%;
+}
+
+/*Seção dados ausentes*/
+#acoesDados {
+    display: flex;
+    row-gap: 1rem;
+}
+
+.recurso {
+    display: flex;
+    column-gap: 1rem;
+    align-items: start;
+}
+
+.recurso .icon {
+    background-color: var(--finup-laranja);
+    padding: 8px;
+    color: var(--finup-azul-escuro);
+    font-size: 2em !important;
+    font-variation-settings: 'wght' 600;
+    border-radius: 5px;
+    box-shadow: var(--pequena);
+    width: min-content;
+}
+
+.txt-recurso .titulo {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.txt-recurso a:any-link {
+    text-decoration:underline;
+    color: var(--finup-azul);
+}
+
+/*Seção saúde financeira*/
+#secaoSaudeFin .charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Gastos por categoria*/
+.chart-container {
+    position: relative;
+    margin: auto;
+}
+
+/*Barra de progresso*/
+.container-progresso {
+    width: 100%;
+    height: 30px;
+    background: #ddd;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.txt-progresso-atual {
+    color: white;
+    font-size: smaller;
+    padding-right: 5px;
+    margin: 5px;
+}
+
+.progresso-atual {
+    height: 100%;
+    background: var(--finup-azul);
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+    text-align: end;
+    background-color: var(--finup-azul);
+}
+
+.progresso-atual:hover {
+    box-shadow: inset 0px 0px 100px 100px rgba(0,0,0,0.2);
+}
+
+.progresso-atual {
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+    text-align: end;
+}
+
+.seguro {
+    background-color: var(--finup-verde);
+}
+
+.aviso {
+    background-color: var(--finup-amarelo);
+}
+
+.aviso .txt-progresso-atual {
+    color: black;
+}
+
+.perigo {
+    background-color: var(--finup-laranja);
+}
+
+.excedido {
+    background-color: var(--finup-laranja-marrom);
+}
+
+/*Seção guia inicial da aplicação*/
+#guiaInApp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+#conteudoGuia {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--grande);
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 400px;
+}
+
+#ocultarGuia {
+    float: inline-end;
+}
+
+#botaoGuia {
+    align-self: flex-end;
+    box-shadow: var(--media);
+    background-color: var(--finup-azul-escuro);
+    color: white;
+    margin: none;
+    transition: ease-in-out 0.5s;
+}
+
+#botaoGuia:hover {
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+
+#cabecalhoGuia h4 {
+    color: var(--finup-laranja);
+}
+
+#checklistGuia ul {
+    line-height: 2rem;
+}
+
+#progressoGuia {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1rem;
+}
+
+#containerProgressoGuia {
+    background-color: #ddd;
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+}
+
+#progressoAtualGuia {
+    width: 0;
+    height: 100%;
+    border-radius: 5px;
+    background-color: var(--finup-verde);
+}
+
+#checklistGuia ul {
+    list-style: none;
+    padding: 0;
+}
+
+li .icon-feito {
+    display: none;
+    font-variation-settings: 'FILL' 1;
+    color: var(--finup-azul);
+    vertical-align: middle;
+}
+
+li .icon-pendente {
+    color: #ccc;
+    vertical-align: middle;
+}
+
+.feito .icon-feito {
+    display: inline;
+}
+
+.feito .icon-pendente {
+    display: none;
+}
+
+#guiaCompleto {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#txtEncerrarGuia {
+    font-weight: 500;
+    color: var(--finup-laranja);
+    font-size: 1.1em;
+}
+
+#btEncerrarGuia {
+    border: 1px solid var(--finup-azul);
+    color: var(--finup-azul);
+}
+
+#btEncerrarGuia:hover {
+    background-color: var(--finup-azul);
+    color: white;
+}
+
+#btDesativarGuia {
+    font-size: 14px;
+    float: right;
+    border: none;
+    background-color: white;
+    color: var(--finup-laranja);
+    text-decoration: underline;
+}
+
+/*Seção contas a pagar*/
+#corpoTabelaContas span {
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.paga span {
+    background: var(--finup-verde-escuro);
+    color: white;
+}
+
+.atrasada span {
+    color: white;
+    background-color: var(--finup-vermelho-marrom);
+}
+
+.vence-hoje span {
+    background-color: var(--finup-amarelo);
+}
+
+.pendente span {
+    background-color: #bbb;
+}
+
+#progressoContas {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+#progressoContas .progress {
+    width: 100%;
+}
+
+#barraProgressoContas {
+    background-color: var(--finup-verde);
+}
+
+#progressoContas .icon-oculto {
+    color: #aaa;
+}
+
+#progressoContas .icon-visivel {
+    color: #777;
+    font-variation-settings: 'FILL' 1;
+}
+
+.conta-paga {
+    display: none;
+}

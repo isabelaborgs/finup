@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Financeira</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="saude-financeira.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script defer src="crud-saude-financeira.js"></script>
+    <script defer src="saude-financeira.js"></script>
+    <script defer src="../notificacoes.js"></script>
+</head>
+<body>
+    <div class="container-fluid" id="wrapper">
+        <div class="row" id="principal">
+            <div class="col-lg-3" id="lateral">
+                <aside>
+                    <nav class="navbar" data-bs-theme="dark">
+                        <div class="container-fluid" id="sidebar">
+                            <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
+                                <div class="offcanvas-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close" id="close-sidebar"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav" id="sidebar-nav">
+                                        <li class="nav-item">
+                                            <div id="logotipo-sidebar">
+                                                <a href="../pagina-dashboard/dashboard.html" class="navbar-brand offcanvas-title" id="offcanvasResponsiveLabel">
+                                                    <img src="../img/logo-clara-completa.png" alt="Logotipo FinUp">
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="../pagina-dashboard/dashboard.html" class="nav-link active" aria-current="page">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">home</span>
+                                                    <span>Dashboard</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="../pagina-controle-financeiro/cfinance.html" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">paid</span>
+                                                    <span>Controle financeiro</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="../pagina-metas/metas.html" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">checklist</span>
+                                                    <span>Metas</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">finance_mode</span>
+                                                    <span>Saúde financeira</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </aside>
+            </div>
+            <div class="col-lg-9">
+                <header>
+                    <nav class="navbar" id="topbar">
+                        <div class="container-fluid" id="topbar-nav">
+                            <button data-bs-theme="dark" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon">
+                            </button>                            
+                            <div class="logo-container">                    
+                                <a href="../pagina-dashboard/dashboard.html" class="navbar-brand d-lg-none"><img src="../img/logo-clara-reduzida.png" alt="Logotipo FinUp" height="50px"></a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="nav-item dropdown me-3">
+                                    <a class="nav-link text-dark" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
+                                        <span id="notificationBadge" class="badge bg-danger" style="position: relative; top: -10px; left: -10px;"></span>
+                                    </a>
+                                    <ul id="notificationList" class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                                        <li class="dropdown-item d-flex">
+                                            <span id="txtNew" class="dropdown-item"></span>
+                                            <span>
+                                                <button id="btExcluirNotificacoes" class="material-symbols-outlined icon-delete" data-bs-toggle="tooltip" data-bs-title="Limpar notificações lidas">delete</button>
+                                                <button id="btMarcarTodasLidas" class="material-symbols-outlined icon-lidas" data-bs-toggle="tooltip" data-bs-title="Marcar todas como lidas">check</button>
+                                            </span>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+                <main>
+                    <div class="container-fluid" id="pag-saude-financeira">
+                        <div class="row" id="tituloSaudeFinanceira">
+                            <h1>Sua saúde financeira</h1>
+                        </div>
+                        <!--Seção exibida quando não há resposta-->
+                        <div class="row" id="pagSaudeFinInicial">
+                            <!--Banner apresentando o I-SFB-->
+                            <section class="row" id="bannerISFB">
+                                <div class="col-md-7" id="apresentacaoISFB">
+                                    <div>
+                                        <h2>Descubra como está sua <b>saúde financeira</b></h2>
+                                        <p>Responda o Índice de Saúde Financeira para avaliar o seu nível de bem-estar financeiro e entender como melhorar.</p>
+                                    </div>
+                                    <div class="acoes-isfb">
+                                        <a href="../pagina-questionario/questionario.html" class="btn" role="button" id="btRespPrimeiraVez"><span>Responder questionário</span></a>
+                                        <a href="#saibaMais" data-bs-toggle="collapse" aria-expanded="false" aria-controls="saibaMais" class="btn" role="button" id="btSaibaMais"><span class="material-symbols-outlined align-middle">more_vert</span>Saiba mais</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row" id="recursosISFB">
+                                        <div class="col-6 recurso-isfb">
+                                            <span class="material-symbols-outlined icon-recurso">query_stats</span>
+                                            <span><b>Avaliação</b></br> da saúde financeira</span>
+                                        </div>
+                                        <div class="col-6 recurso-isfb">
+                                            <span class="material-symbols-outlined icon-recurso">bar_chart</span>
+                                            <span><b>Relatório</b></br> do resultado</span>
+                                        </div>
+                                        <div class="col-6 recurso-isfb">
+                                            <span class="material-symbols-outlined icon-recurso">checklist</span>
+                                            <span><b>Recomendações</b></br> de melhora</span>
+                                        </div>
+                                        <div class="col-6 recurso-isfb">
+                                            <span class="material-symbols-outlined icon-recurso">monitoring</span>
+                                            <span><b>Acompanhamento</b></br> do progresso</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                            <!--Mais informações sobre o I-SFB-->
+                            <section class="row container-tab collapse" id="saibaMais">
+                                <hr>
+                                    <div class="row" id="introducaoIndice">
+                                        <h3>Sobre o Índice de Saúde Financeira</h3>
+                                        <h5>O <b>Índice de Saúde Financeira do Brasileiro (I-SFB)</b> é uma ferramenta desenvolvida por especialistas da FEBRABAN em cooperação técnica com o Banco Central. O I-SFB faz um diagnóstico geral da saúde e bem-estar financeiros e aponta o que pode ser melhorado.</h5>
+                                        <a href="https://indice.febraban.org.br/" target="_blank">Acesse a página oficial do I-SFB para mais informações sobre o desenvolvimento da ferramenta <span class="material-symbols-outlined align-middle">open_in_new</span></a>
+                                    </div>
+                                    <hr>
+                                    <div class="row" id="definicaoSaudeFin">
+                                        <div class="col-12">
+                                            <h4>Ter uma boa saúde financeira indica que você: </h4>
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <div class="topico-definicao" id="topico-1">
+                                                <div class="material-symbols-outlined icon-definicao">attach_money</div>
+                                                <div class="texto-topico">é capaz de cumprir suas obrigações financeiras</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <div class="topico-definicao" id="topico-2">
+                                                <div class="material-symbols-outlined icon-definicao">check</div>
+                                                <div class="texto-topico">tem disciplina e autocontrole para cumprir seus objetivos</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <div class="topico-definicao" id="topico-3">
+                                                <div class="material-symbols-outlined icon-definicao">savings</div>
+                                                <div class="texto-topico">sente segurança em relação a seu presente e futuro financeiro</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <div class="topico-definicao" id="topico-4">
+                                                <div class="material-symbols-outlined icon-definicao">person_celebrate</div>
+                                                <div class="texto-topico">tem liberdade para fazer escolhas que te permitam aproveitar a sua vida</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row" id="definicaoDominios">
+                                        <div class="col-12">
+                                            <h4>Sua saúde financeira é composta de 4 medidas: </h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sobre-dominio" id="sobreHab">
+                                                <h5 class="nome-dominio">Habilidade Financeira</h5>
+                                                <div class="info-dominio">Avalia a sua capacidade de buscar e entender informações importantes para a vida financeira.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sobre-dominio" id="sobreComp">
+                                                <h5 class="nome-dominio">Comportamento Financeiro</h5>
+                                                <div class="info-dominio">Avalia as suas atitudes, principalmente com relação à disciplina e controle.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sobre-dominio" id="sobreSeg">
+                                                <h5 class="nome-dominio">Segurança Financeira</h5>
+                                                <div class="info-dominio">Mede a sua percepção sobre sua situação financeira e se ela é fontede preocupação e estresse na sua vida.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="sobre-dominio" id="sobreLib">
+                                                <h5 class="nome-dominio">Liberdade Financeira</h5>
+                                                <div class="info-dominio">Mede a sua percepção de liberdade sobre o leque de opções proporcionado pela situação financeira no presente e no futuro</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </section>
+                        </div>
+                        <!--Seção exibida quando há pelo menos uma resposta-->
+                        <div class="row" id="resultadoISFB">
+                            <!--Navegação das abas-->
+                            <nav class="nav nav-tabs" id="navTabSaudeFin" role="tablist">
+                                <button class="nav-link active" id="navResultadoTab" data-bs-toggle="tab" data-bs-target="#navResultado" type="button" role="tab" aria-controls="navResultado" aria-selected="true">Resultado</button>
+                                <button class="nav-link" id="navAnaliseTab" data-bs-toggle="tab" data-bs-target="#navAnalise" type="button" role="tab" aria-controls="navAnalise" aria-selected="false">Análise detalhada</button>
+                                <button class="nav-link" id="navProgressoTab" data-bs-toggle="tab" data-bs-target="#navProgresso" type="button" role="tab" aria-controls="navProgresso" aria-selected="false">Progresso</button>
+                                <button class="nav-link" id="navHistoricoTab" data-bs-toggle="tab" data-bs-target="#navHistorico" type="button" role="tab" aria-controls="navHistorico" aria-selected="false">Histórico</button>
+                                <button class="nav-link" id="navSobreTab" data-bs-toggle="tab" data-bs-target="#navSobre" type="button" role="tab" aria-controls="navSobre" aria-selected="false">Sobre o índice</button>
+                            </nav>
+                            <div class="tab-content" id="navTabContent">
+                                <!--Aba: resumo do resultado-->
+                                <section class="tab-pane fade show active" id="navResultado" role="tabpanel" aria-labelledby="navResultadoTab" tabindex="0">
+                                    <div class="container-fluid container-tab" id="containerResultado">
+                                        <h2>Resultado atual</h2>
+                                        <div class="row g-0" id="resultadoGeral">
+                                            <h4 class="titulo-resultado">Índice de saúde financeira: <span id=pontGeral></span></h4>
+                                            <div id="infoGeral">
+                                                <div class="txtResultGeral" style="display: none" id="txtOtima">
+                                                    <p>Você possui uma vida sem estresse financeiro e suas finanças te permitem ter segurança e liberdade para aproveitar a vida.</p>
+                                                </div>
+                                                <div class="txtResultGeral" style="display: none" id="txtMuitoBoa">
+                                                    <p>Você tem um grande domínio de sua vida financeira e a construção de patrimônio pode te oferecer maior segurança e acesso a oportunidades financeiras.</p>
+                                                </div>
+                                                <div class="txtResultGeral" style="display: none" id="txtBoa">
+                                                    <p>Suas finanças estão estabilizadas, mas é comum que não sobre dinheiro no fim do mês.</p>
+                                                </div>
+                                                <div class="txtResultGeral" style="display: none" id="txtOk">
+                                                    <p>Suas finanças estão equilibradas, mas no limite - há pouco espaço para erros e imprevistos financeiros.</p>
+                                                </div>
+                                                <div class="txtResultGeral" style="display: none" id="txtBaixa">
+                                                    <p>Você possui conhecimento financeiro básico para o dia a dia, mas apresenta os primeiros sinais de desequilíbrio e corre o risco de entrar em alto estresse financeiro.</p>
+                                                </div>
+                                                <div class="txtResultGeral" style="display: none" id="txtMuitoBaixa">
+                                                    <p>Suas finanças estão desequilibradas, o estresse financeiro é elevado e existe o risco de atingir uma situação insustentável.</p>
+                                                </div>
+                                                <div class="txtResultGeral" style="display: none" id="txtRuim">
+                                                    <p>Você está em uma situação de grande fragilidade, estresse e desorganização financeira.</p>
+                                                </div>
+                                            </div>
+                                            <div class="container-progresso">
+                                                <div class="barra-progresso">
+                                                    <div class="container-marcador">
+                                                        <div class="marcador" id="marcGeral"></div>
+                                                        <div class="txtMarcador" id="txtMarcGeral"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="resultadoDominios">
+                                            <div class="col-12 col-lg-6">
+                                                <section class="dominio" id="resultadoHabilidade">
+                                                    <div class="titulo-dominio">
+                                                        <h5 class="titulo-resultado">Habilidade Financeira: <span id=pontHabilidade></span></h5>
+                                                    </div>
+                                                    <div class="container-progresso">
+                                                        <div class="barra-progresso">
+                                                            <div class="container-marcador">
+                                                                <div class="marcador" id="marcHabilidade"></div>
+                                                                <div class="txtMarcador" id="txtMarcHabilidade"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <section class="dominio" id="resultadoComportamento">
+                                                    <div class="titulo-dominio">
+                                                        <h5 class="titulo-resultado">Comportamento Financeiro: <span id=pontComportamento></span></h5>
+                                                    </div>
+                                                    <div class="container-progresso">
+                                                        <div class="barra-progresso">
+                                                            <div class="container-marcador">
+                                                                <div class="marcador" id="marcComportamento"></div>
+                                                                <div class="txtMarcador" id="txtMarcComportamento"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <section class="dominio" id="resultadoSeguranca">
+                                                    <div class="titulo-dominio">
+                                                        <h5 class="titulo-resultado">Segurança Financeira: <span id=pontSeguranca></span></h5>
+                                                    </div>
+                                                    <div class="container-progresso">
+                                                        <div class="barra-progresso">
+                                                            <div class="container-marcador">
+                                                                <div class="marcador" id="marcSeguranca"></div>
+                                                                <div class="txtMarcador" id="txtMarcSeguranca"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <section class="dominio" id="resultadoLiberdade">
+                                                    <div class="titulo-dominio">
+                                                        <h5 class="titulo-resultado">Liberdade Financeira: <span id=pontLiberdade></span></h5>
+                                                    </div>
+                                                    <div class="container-progresso">
+                                                        <div class="barra-progresso">
+                                                            <div class="container-marcador">
+                                                                <div class="marcador" id="marcLiberdade"></div>
+                                                                <div class="txtMarcador" id="txtMarcLiberdade"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="respNovamente">
+                                            <a href="../pagina-questionario/questionario.html" role="button" id="btRespNovamente"><span class="material-symbols-outlined align-middle">replay</span><span class="bt-txt"> Responder novamente</span></a>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!--Aba: resultado detalhado-->
+                                <section class="tab-pane fade" id="navAnalise" role="tabpanel" aria-labelledby="navAnaliseTab" tabindex="0">
+                                    <div class="container-fluid container-tab" id="containerAnalise">
+                                        <h2>Análise detalhada</h2>
+                                        <div id="analiseGeral">
+                                            <div class="row" id="analiseOtima" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> ótima</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Possui uma vida financeira que proporciona segurança e prossibilidades de escolha;</li>
+                                                                <li class="list-group-item">Possui conhecimentos e bons hábitos que permitem aproveitar melhor o presente e fazer planos para o futuro;</li>
+                                                                <li class="list-group-item">Cumpre com os compromissos financeiros assumidos;</li>
+                                                                <li class="list-group-item">Se organiza de uma forma que sobra dinheiro no fim do mês;</li>
+                                                                <li class="list-group-item">Tem a possibilidade de construir patrimônio e uma reserva financeira.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Manter um controle orçamentário e planejamento financeiro;</li>
+                                                                <li class="list-group-item">Contruir, aprimorar e manter uma reserva financeira;</li>
+                                                                <li class="list-group-item">Construção e preservação de patrimônio.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="analiseMuitoBoa" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> muito boa</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Tem grande domínio da vida financeira;</li>
+                                                                <li class="list-group-item">Não tem grandes preocupações com dinheiro e não sente uma ameaça ao padrão de vida em casa;</li>
+                                                                <li class="list-group-item">Possui bons conhecimentos e capacidade de aplicá-los, o que permite conduzir as finanças com autonomia e confiança;</li>
+                                                                <li class="list-group-item">Sabe organizar suas contas de forma que enfrenta menos contratempos;</li>
+                                                                <li class="list-group-item">Tem grandes chances de sobrar dinheiro no fim do mês.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Manter um controle orçamentário e planejamento financeiro;</li>
+                                                                <li class="list-group-item">Contruir, aprimorar e manter uma reserva financeira;</li>
+                                                                <li class="list-group-item">Construção e preservação de patrimônio.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="analiseBoa" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> boa</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Tem uma vida financeira confortável e sente que tem opções no presente e no futuro;</li>
+                                                                <li class="list-group-item">Tem conhecimentos a respeito de princípios da vida financeira, o que permite organizar as contas e viver um dia a dia sem sustos;</li>
+                                                                <li class="list-group-item">Tem chances de sobrar algum dinheiro no fim do mês;</li>
+                                                                <li class="list-group-item">Vivencia algumas incertezas e preocupações pontuais; </li>
+                                                                <li class="list-group-item">Corre algum risco de ser surpreendido por uma despesa inesperada.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Se organizar para poupar dinheiro;</li>
+                                                                <li class="list-group-item">Criar uma reserva para lidar com imprevistos;</li>
+                                                                <li class="list-group-item">Aumentar a disciplina e o autocontrole;</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="analiseOk" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> ok</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Possui uma vida financeira equilibrada, mas sem margem para erros;</li>
+                                                                <li class="list-group-item">Vivencia preocupações e inseguranças moderadas com a vida financeira e com a manutenção do padrão de vida com frequência;</li>
+                                                                <li class="list-group-item">Possui conhecimento e atitudes financeiras suficientes para um dia a dia sem sobressaltos; </li>
+                                                                <li class="list-group-item">Apresenta dificuldades em tomar decisões financeiras mais complexas;</li>
+                                                                <li class="list-group-item">Raramente sobra dinheiro no fim do mês e uma despesa inesperada pode ser um problema.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Se organizar para poupar dinheiro;</li>
+                                                                <li class="list-group-item">Criar uma reserva para lidar com imprevistos;</li>
+                                                                <li class="list-group-item">Desenvolver e/ou aumentar a disciplina e o autocontrole;</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="analiseBaixa" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> baixa</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Apresenta sinais de desequilíbrio na vida financeira;</li>
+                                                                <li class="list-group-item">Vivencia grande insegurança sobre as finanças;</li>
+                                                                <li class="list-group-item">Possui conhecimento e atitudes financeiras básicos para o dia a dia;</li>
+                                                                <li class="list-group-item">Apresenta dificuldades em tomar decisões financeiras mais complexas;</li>
+                                                                <li class="list-group-item">Tem dificuldade para fechar as contas e difilcimente sobra dinheiro no fim do mês, o que pode levar a atrasar o pagamento de contas e dificuldade de suportar um imprevisto.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Aprimorar conhecimentos sobre organização financeira;</li>
+                                                                <li class="list-group-item">Se organizar para poupar dinheiro;</li>
+                                                                <li class="list-group-item">Criar uma reserva para lidar com imprevistos;</li>
+                                                                <li class="list-group-item">Desenvolver e/ou aumentar a disciplina e o autocontrole;</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="analiseMuitoBaixa" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> muito baixa</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Possui uma vida financeira desequilibrada;</li>
+                                                                <li class="list-group-item">Precisa reduzir o padrão de vida e vivencia muito estresse em casa;</li>
+                                                                <li class="list-group-item">Tem dificuldade de buscar, entender e aplicar informações financeiras;</li>
+                                                                <li class="list-group-item">Possui conhecimento financeiro limitado e isso dificulta a organização das contas;</li>
+                                                                <li class="list-group-item">Tem mais chances de ter gastos maiores do que a renda e de atrasar contas.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Desenvolver conhecimentos sobre organização financeira;</li>
+                                                                <li class="list-group-item">Evitar ou sair das dívidas para evitar a deterioração das finanças;</li>
+                                                                <li class="list-group-item">Se estabilizar financeiramente.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="analiseRuim" style="display: none;">
+                                                <h4 class="titulo-faixa">
+                                                    Sua saúde financeira é <span class="label-saude-fin"> ruim</span>
+                                                </h4>
+                                                <div class="col-12"> 
+                                                    <div class="conteudo-faixa">
+                                                        <div class="caracteristicas">Uma pessoa que se encontra nessa faixa de saúde financeira geralmente:
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Está em uma situação crítica financeiramente e sente que não tem opções no presente;</li>
+                                                                <li class="list-group-item">Sente o estresse financeiro pressionar o padrão de vida e o ambiente da casa</li>
+                                                                <li class="list-group-item">Não tem muito conhecimento financeiro, o que torna difícil se manter no controle da vida financeira;</li>
+                                                                <li class="list-group-item">Tem mais chances de atrasar contas e teria muita dificuldade de suportar despesas inesperadas.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="focos">Possíveis focos para cuidar da saúde financeira:
+                                                            <ul class="list-group ">
+                                                                <li class="list-group-item">Desenvolver conhecimentos sobre organização financeira;</li>
+                                                                <li class="list-group-item">Evitar ou sair das dívidas para resgatar a saúde das finanças;</li>
+                                                                <li class="list-group-item">Se estabilizar financeiramente</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="comparacaoDominios">
+                                                <h4>Veja a sua pontuação em cada dimensão em comparação com a pontuação média dos brasileiros:</h4>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="comparacao" id="cardCompHab">
+                                                        <span class="dominio-comp">Habilidade</span>
+                                                        <span id="comparacaoHabilidade"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="comparacao" id="cardCompComp">
+                                                        <span class="dominio-comp">Comportamento</span>
+                                                        <span id="comparacaoComportamento"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="comparacao" id="cardCompSeg">
+                                                        <span class="dominio-comp">Segurança</span>
+                                                        <span id="comparacaoSeguranca"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="comparacao" id="cardCompLib">
+                                                        <span class="dominio-comp">Liberdade</span>
+                                                        <span id="comparacaoLiberdade"></span>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="row" id="recomendacoes">
+                                            <h4>Foque em se desenvolver nas dimensões com maior dificuldade para melhorar a sua saúde financeira:</h4>
+                                            <div class="col-12">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item recomendacao" id="itemHab">
+                                                        <span class="material-symbols-outlined icon-recomend">check_circle</span>
+                                                        <span>
+                                                            <div class="dominio-recomend">Habilidade: </div>
+                                                            <div class="txt-recomend">Desenvolva seus conhecimentos sobre gerenciamento financeiro</div>
+                                                        </span>
+                                                        
+                                                    </li>
+                                                    <li class="list-group-item recomendacao" id="itemComp">
+                                                        <span class="material-symbols-outlined icon-recomend">check_circle</span>
+                                                        <span>
+                                                            <div class="dominio-recomend">Comportamento: </div>
+                                                            <div class="txt-recomend">Aumente sua capacidade de disciplina e autocontrole para atingir objetivos</div>
+                                                        </span>
+                                                    </li>
+                                                    <li class="list-group-item recomendacao" id="itemSeg">
+                                                        <span class="material-symbols-outlined icon-recomend">check_circle</span>
+                                                        <span>
+                                                            <div class="dominio-recomend">Segurança: </div>
+                                                            <div class="txt-recomend">Aprenda a organizar suas finanças de forma que consiga pagar as contas e manter o padrão de vida sem aperto</div>
+                                                        </span>
+                                                    </li>
+                                                    <li class="list-group-item recomendacao" id="itemLib">
+                                                        <span class="material-symbols-outlined icon-recomend">check_circle</span>
+                                                        <span>
+                                                            <div class="dominio-recomend">Liberdade: </div>
+                                                            <div class="txt-recomend">Aprenda a organizar as finanças de forma que sobre dinheiro para aproveitar a vida e trabalhe na construção de uma reserva que possa ser utilizada em imprevistos</div>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!--Aba: progresso ao longo do tempo-->
+                                <section class="tab-pane fade" id="navProgresso" role="tabpanel" aria-labelledby="navProgressoTab" tabindex="0">
+                                    <div class="container-fluid container-tab" id="containerProgresso">
+                                        <div class="row" id="progresso">
+                                            <div class="col-12">
+                                                <h2 id="tituloProgresso">Seu progresso</h2>
+                                            </div>
+                                            <div id="progressoVazio">
+                                                Quando você <a href="../pagina-questionario/questionario.html" data-bs-toggle="tooltip" data-bs-title="Clique aqui para responder novamente">avaliar o seu índice</a> mais vezes, seu progresso ao longo do tempo poderá ser visualizado aqui.
+                                            </div>
+                                            <div class="col-12" id="chartContainer">
+                                                <canvas id="chartProgresso"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!--Aba: histórico de resultados-->
+                                <section class="tab-pane fade" id="navHistorico" role="tabpanel" aria-labelledby="navHistoricoTab" tabindex="0">
+                                    <div class="container-fluid container-tab" id="containerTabHistorico">
+                                        <h2 id="tituloHist">Histórico de resultados</h2>
+                                        <div class="row" id="historico">
+                                            <nav class="col-sm-4" id="navDataHistorico">
+                                                <a href="../pagina-questionario/questionario.html" role="button" id="btAddResposta" class="order-1"><span class="material-symbols-outlined align-middle">add</span> Nova resposta</a>
+                                            </nav>
+                                            <div class="col-sm-8" id="historicoContainer"></div>
+                                        </div>
+                                    </div>
+                                    
+                                </section>
+                                <!--Aba: mais informações sobre o ISFB-->
+                                <section class="tab-pane fade" id="navSobre" role="tabpanel" aria-labelledby="navSobreTab" tabindex="0">
+                                    <div class="container-fluid container-tab" id="containerSobre">
+                                        <div class="row" id="introducaoIndice">
+                                            <h2>Sobre o Índice de Saúde Financeira</h2>
+                                            <h5>O <b>Índice de Saúde Financeira do Brasileiro (I-SFB)</b> é uma ferramenta desenvolvida por especialistas da FEBRABAN em cooperação técnica com o Banco Central. O I-SFB faz um diagnóstico geral da saúde e bem-estar financeiros e aponta o que pode ser melhorado.</h5>
+                                            <a href="https://indice.febraban.org.br/" target="_blank">Acesse a página oficial do I-SFB para mais informações sobre o desenvolvimento da ferramenta <span class="material-symbols-outlined align-middle">open_in_new</span></a>
+                                        </div>
+                                        <hr>
+                                        <div class="row" id="definicaoSaudeFin">
+                                            <div class="col-12">
+                                                <h4>Ter uma boa saúde financeira indica que você: </h4>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <div class="topico-definicao" id="topico-1">
+                                                    <div class="material-symbols-outlined icon-definicao">attach_money</div>
+                                                    <div class="texto-topico">é capaz de cumprir suas obrigações financeiras</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <div class="topico-definicao" id="topico-2">
+                                                    <div class="material-symbols-outlined icon-definicao">check</div>
+                                                    <div class="texto-topico">tem disciplina e autocontrole para cumprir seus objetivos</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <div class="topico-definicao" id="topico-3">
+                                                    <div class="material-symbols-outlined icon-definicao">savings</div>
+                                                    <div class="texto-topico">sente segurança em relação a seu presente e futuro financeiro</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <div class="topico-definicao" id="topico-4">
+                                                    <div class="material-symbols-outlined icon-definicao">person_celebrate</div>
+                                                    <div class="texto-topico">tem liberdade para fazer escolhas que te permitam aproveitar a sua vida</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row" id="definicaoDominios">
+                                            <div class="col-12">
+                                                <h4>Sua saúde financeira é composta de 4 medidas: </h4>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="sobre-dominio" id="sobreHab">
+                                                    <h5 class="nome-dominio">Habilidade Financeira</h5>
+                                                    <div class="info-dominio">Avalia a sua capacidade de buscar e entender informações importantes para a vida financeira.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="sobre-dominio" id="sobreComp">
+                                                    <h5 class="nome-dominio">Comportamento Financeiro</h5>
+                                                    <div class="info-dominio">Avalia as suas atitudes, principalmente com relação à disciplina e controle.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="sobre-dominio" id="sobreSeg">
+                                                    <h5 class="nome-dominio">Segurança Financeira</h5>
+                                                    <div class="info-dominio">Mede a sua percepção sobre sua situação financeira e se ela é fontede preocupação e estresse na sua vida.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="sobre-dominio" id="sobreLib">
+                                                    <h5 class="nome-dominio">Liberdade Financeira</h5>
+                                                    <div class="info-dominio">Mede a sua percepção de liberdade sobre o leque de opções proporcionado pela situação financeira no presente e no futuro</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Fonte-->
+                    <div class="row" id="fonte">
+                        <p><b>Fonte</b>: I-SFB/FEBRABAN. Disponível no endereço eletrônico: <a href="https://indice.febraban.org.br/">indice.febraban.org.br</a>.</p>
+                    </div>
+                </main>
+            </div>
+        </div>       
+        <div class="row" id="rodape2">
+            <footer class="simple-footer2">
+                    <div class="footer-bottom d-flex justify-content-between align-items-center">
+                    <img src="../img/logo-clara-reduzida2.png" alt="Logotipo FinUp reduzida" height="50px">
+                    <p>&copy; 2024 FinUp. Todos os direitos reservados.</p>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

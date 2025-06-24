@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+/* Estilos gerais */
+body {
+    background-color: #e0e8f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Paleta de cores principal */
+:root {
+	--azul-escuro-principal: #0c2d57;
+	--azul-intermed-secundario: #2c62a7;
+	--laranja-principal: #fc6736;
+	--amarelo-secundario: #ffad60;
+	--azul-claro-suave: #eae5ff;
+    --pequena: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    --media: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    --grande: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --suspensao: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    --relevo: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#controle-financeiro {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    row-gap: 2rem;
+}
+
+/* Botões */
+.header-buttons {
+    display: flex;
+    gap: 1.2rem;
+}
+
+#add-transaction {
+    background-color: var(--azul-escuro-principal);
+    color: white;
+    font-size: 1.1em;
+    transition: ease-out .5s;
+}
+
+#transaction-form {
+    row-gap: 1rem;
+}
+
+#submit-transaction {
+    background-color: var(--azul-escuro-principal);
+    color: white;
+    width: 100%;
+}
+
+/* Área de ganho e despesa */
+#entry-form {
+    width: 90%;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+tr button {
+    border-radius: 5px;
+    background-color: transparent;
+    border: solid 1px red;
+    color: red;
+    font-size: 14px;
+    padding: 0.2rem 1rem;
+}
+
+tr button:hover {
+    background-color: red;
+    color: white;
+}
+
+/* Estilo para a seção da categoria */
+#categories {
+    display: grid;
+    row-gap: 4rem;
+}
+
+.transaction-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+.category {
+    padding: 1.2rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.category-toggle {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: black;
+}
+
+.category-name {
+    color: var(--azul-escuro-principal);
+    font-weight: 600;
+}
+
+.category-name i {
+    color: var(--laranja-principal);
+    margin-right: 10px;
+}
+
+/* Estilo para a tabela de limite de gastos */
+.limit-table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.limit-table td {
+    padding: 5px;
+}
+
+.limit-table input,
+.limit-table select {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para o botão de remoção */
+.remove-row {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.remove-row:hover {
+    background-color: #c0392b;
+}

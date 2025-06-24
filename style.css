@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+	font-family: 'DM Sans', sans-serif;
+}
+
+/* Paleta de cores principal */
+:root {
+	--azul-escuro-principal: #0c2d57;
+	--azul-intermed-secundario: #2c62a7;
+	--laranja-principal: #fc6736;
+	--amarelo-secundario: #ffad60;
+	--azul-claro-suave: #eae5ff;
+}
+
+/* Personalização de variáveis do Bootstrap */
+.dropdown-menu#sidebar-dropdown {
+	--bs-dropdown-bg: var(--azul-escuro-principal);
+	--bs-dropdown-link-hover-bg:#ffffff09;
+}
+
+div#content.container-fluid, div#wrapper.container-fluid, div#principal.row, div#rodape2.row {
+	--bs-gutter-x: 0;
+}
+
+/* Ícones do Google Fonts */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+/* Cabeçalho */
+header {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    position: sticky;
+    top: 0;
+	background-color: var(--azul-escuro-principal);
+}
+
+/* Barra lateral */
+#lateral, .offcanvas-header, .offcanvas-body {
+	background-color: var(--azul-escuro-principal);
+}
+
+#logotipo-sidebar {
+    max-width: 200px;
+}
+
+#logotipo-sidebar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#sidebar-nav {
+    position: fixed;
+    top: 0;
+	padding-top: 2rem;
+	padding-left: 1.5rem;
+}
+
+#logotipo-sidebar {
+	margin-bottom: 2rem;
+}
+
+.nav-link:hover {
+    background-color: #ffffff0c;
+}
+
+.offcanvas-body span {
+    color: #ffff;
+}
+
+.sidebar-item {
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+	font-size: 110%;
+}
+
+/* Conteúdo da página */
+main {
+	padding: 2em;
+	min-height: 85vh;
+}
+
+/*Rodapé*/
+#rodape2 {
+	background-color: #2c62a7; 
+	width: 100%; 
+	padding: 20px; 
+	color: #fff;
+	position: relative;
+	bottom: 0; 
+}
+  
+.simple-footer2 {
+	display: flex;
+	justify-content: space-between; 
+	align-items: center; 
+	width: 100%;
+	margin: 0 auto; 
+}
+  
+.simple-footer2 img {
+	max-height: 50px;
+}
+  
+.footer-bottom p {
+	margin: 0; 
+	font-size: 14px; 
+}
+
+
+/*Notificações*/
+#notificationList .notificacao {
+	display: flex;
+	justify-content: space-between;
+}
+
+#txtNew {
+	margin-right: 1rem;
+}
+
+#notificationList button {
+	border: none;
+	color: #888;
+	background-color: transparent;
+	padding: 0;
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+#notificationList .notificacao-oculta {
+	display: none;
+}
+
+#notificationList .icon-lidas:hover {
+	color: green;
+}
+
+#notificationList .icon-delete:hover {
+	color: red;
+}
+
+#notificationList .icone-informativo {
+	vertical-align: middle;
+	margin-right: 0.5rem;
+}
+
+#notificationList .icon-danger {
+	color: red;
+}
+
+#notificationList .icon-warning {
+	color: yellow;
+}
+
+#notificationList .icon-info {
+	color: blue;
+}
+
+#notificationList .icon-check {
+	color: green;
+}
+
+#notificationList .data-notificacao {
+	font-size: 14px;
+	color: #999;
+	margin-left: 1rem;
+}
+
+#notificationList .notificacao a{
+	text-decoration: none;
+	color: black;
+}
+
+#notificationList .notificacao-lida a, #notificationList .notificacao-lida .icone-informativo {
+	color: #888;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+	.simple-footer2 {
+		flex-direction: column; 
+		text-align: center; 
+	}
+  
+	.simple-footer2 img {
+		margin-bottom: 10px; 
+	}
+}
+
+/* Telas large (lg) */
+@media screen and (min-width: 992px) {
+	#lateral {
+		background-color: var(--azul-escuro-principal);
+	}
+	
+	header {
+		display: flex; 
+		justify-content: end; 
+		background-color: white; 
+		padding: 10px;
+	}
+}
+
+/*Telas extra-large*/
+@media screen and (min-width: 1200px) {
+	#logotipo-sidebar {
+		max-width: 250px;
+	}
+}
+
+@media (max-width: 992px) {
+    /* Mudar cor do sino para branco */
+    .nav-item .nav-link i.bi-bell {
+        color: #fff;
+    }
+}

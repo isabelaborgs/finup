@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventário de Saúde Financeira do Brasileiro (I-SFB)</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="questionario.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script defer src="../pagina-saude-financeira/crud-saude-financeira.js"></script>
+    <script defer src="questionario.js"></script>
+    <script defer src="../notificacoes.js"></script>
+</head>
+<body>
+    <div class="container-fluid" id="wrapper">
+        <div class="row" id="principal">
+            <div class="col-lg-3" id="lateral">
+                <aside>
+                    <nav class="navbar" data-bs-theme="dark">
+                        <div class="container-fluid" id="sidebar">
+                            <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
+                                <div class="offcanvas-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close" id="close-sidebar"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav" id="sidebar-nav">
+                                        <li class="nav-item">
+                                            <div id="logotipo-sidebar">
+                                                <a href="../pagina-dashboard/dashboard.html" class="navbar-brand offcanvas-title" id="offcanvasResponsiveLabel">
+                                                    <img src="../img/logo-clara-completa.png" alt="Logotipo FinUp">
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="../pagina-dashboard/dashboard.html" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">home</span>
+                                                    <span>Dashboard</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="../pagina-controle-financeiro/cfinance.html" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">paid</span>
+                                                    <span>Controle financeiro</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="../pagina-metas/metas.html" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">checklist</span>
+                                                    <span>Metas</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item active" aria-current="page">
+                                            <a href="../pagina-saude-financeira/saude-financeira.html" class="nav-link">
+                                                <div class="sidebar-item">
+                                                    <span class="material-symbols-outlined">finance_mode</span>
+                                                    <span>Saúde financeira</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </aside>
+            </div>
+            <div class="col-lg-9">
+                <header>
+                    <nav class="navbar" id="topbar">
+                        <div class="container-fluid" id="topbar-nav">
+                            <button data-bs-theme="dark" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon">
+                            </button>                            
+                            <div class="logo-container">                    
+                                <a href="../pagina-dashboard/dashboard.html" class="navbar-brand d-lg-none"><img src="../img/logo-clara-reduzida.png" alt="Logotipo FinUp" height="50px"></a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="nav-item dropdown me-3">
+                                    <a class="nav-link text-dark" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
+                                        <span id="notificationBadge" class="badge bg-danger" style="position: relative; top: -10px; left: -10px;"></span>
+                                    </a>
+                                    <ul id="notificationList" class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                                        <li class="dropdown-item d-flex">
+                                            <span id="txtNew" class="dropdown-item"></span>
+                                            <span>
+                                                <button id="btExcluirNotificacoes" class="material-symbols-outlined icon-delete" data-bs-toggle="tooltip" data-bs-title="Limpar notificações lidas">delete</button>
+                                                <button id="btMarcarTodasLidas" class="material-symbols-outlined icon-lidas" data-bs-toggle="tooltip" data-bs-title="Marcar todas como lidas">check</button>
+                                            </span>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+                
+                <main>
+                    <div class="container-fluid" id="questionario-saude-financeira">
+                        <div id="voltar">
+                            <a href="../pagina-saude-financeira/saude-financeira.html" class="btn" role="button" id="btVoltar"><span class="material-symbols-outlined align-middle" id="iconVoltar">arrow_left_alt</span><span> Voltar</span></a>
+                        </div>
+                        <div class="row" id="apresentacao-questionario">
+                            <h1 id="titulo">Índice de Saúde Financeira do Brasileiro</h1>
+                            <h2 id="call-to-action">Responda o questionário e saiba como está sua saúde financeira</h2>
+                            <div id="btArrow">
+                                <a href="#parte1"><span class="material-symbols-outlined" id="arrow">
+                                    keyboard_arrow_down
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!--Início do formulário-->
+                        <form id="isfb">
+                            <!--Início da parte 1-->
+                            <div class="row" id="parte1">
+                                <div class="col-12" id="titulo1">
+                                    <h3>Parte 01</h3>
+                                </div>
+                                <!--Segurança financeira-->
+                                <!--Questão 1-->
+                                <div class="col-12 questao">
+                                    <h5>Nos últimos 12 meses, qual frase melhor descreve a comparação entre a renda total e os gastos na sua casa?</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q1op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q1" id="q1op1" class="pt1 seguranca" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Os gastos foram muito maiores que a renda
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q1op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q1" id="q1op2" class="pt1 seguranca" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Os gastos foram um pouco maiores que a renda
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q1op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q1" id="q1op3" class="pt1 seguranca" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Os gastos foram mais ou menos iguais à renda
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q1op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q1" id="q1op4" class="pt1 seguranca" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Os gastos foram um pouco menores que a renda
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q1op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q1" id="q1op5" class="pt1 seguranca" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Os gastos foram muito menores que a renda
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 questao">
+                                    <h4>O quanto esta frase descreve você ou sua situação?</h4>
+                                </div>
+                                <!--Questão 2-->
+                                <div class="col-12 questao">
+                                    <h5>Preocupações com as despesas e compromissos financeiros são motivo de estresse na minha casa.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q2op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q2" id="q2op1" class="pt1 seguranca" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q2op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q2" id="q2op2" class="pt1 seguranca" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q2op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q2" id="q2op3" class="pt1 seguranca" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q2op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q2" id="q2op4" class="pt1 seguranca" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q2op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q2" id="q2op5" class="pt1 seguranca" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 3-->
+                                <div class="col-12 questao">
+                                    <h5>Por causa dos compromissos financeiros assumidos, o padrão de vida da minha casa foi bastante reduzido.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q3op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q3" id="q3op1" class="pt1 seguranca" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q3op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q3" id="q3op2" class="pt1 seguranca" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q3op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q3" id="q3op3" class="pt1 seguranca" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q3op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q3" id="q3op4" class="pt1 seguranca" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q3op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q3" id="q3op5" class="pt1 seguranca" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 4-->
+                                <div class="col-12 questao">
+                                    <h5>Estou apertado(a) financeiramente.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q4op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q4" id="q4op1" class="pt1 seguranca" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q4op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q4" id="q4op2" class="pt1 seguranca" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q4op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q4" id="q4op3" class="pt1 seguranca" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q4op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q4" id="q4op4" class="pt1 seguranca" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q4op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q4" id="q4op5" class="pt1 seguranca" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Habilidade Financeira-->
+                                <!--Questão 5-->
+                                <div class="col-12 questao">
+                                    <h5>Eu sei tomar decisões financeiras complicadas.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q5op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q5" id="q5op1" class="pt1 habilidade" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q5op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q5" id="q5op2" class="pt1 habilidade" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q5op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q5" id="q5op3" class="pt1 habilidade" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q5op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q5" id="q5op4" class="pt1 habilidade" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q5op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q5" id="q5op5" class="pt1 habilidade" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 6-->
+                                <div class="col-12 questao">
+                                    <h5>Eu sou capaz de reconhecer um bom investimento.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q6op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q6" id="q6op1" class="pt1 habilidade" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q6op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q6" id="q6op2" class="pt1 habilidade" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q6op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q6" id="q6op3" class="pt1 habilidade" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q6op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q6" id="q6op4" class="pt1 habilidade" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q6op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q6" id="q6op5" class="pt1 habilidade" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 7-->
+                                <div class="col-12 questao">
+                                    <h5>Eu sei me informar para tomar decisões financeiras.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q7op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q7" id="q7op1" class="pt1 habilidade" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q7op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q7" id="q7op2" class="pt1 habilidade" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q7op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q7" id="q7op3" class="pt1 habilidade" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q7op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q7" id="q7op4" class="pt1 habilidade" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q7op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q7" id="q7op5" class="pt1 habilidade" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Comportamento Financeiro-->
+                                <!--Questão 8-->
+                                <div class="col-12 questao">
+                                    <h5>Eu sei como me controlar para não gastar muito.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q8op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q8" id="q8op1" class="pt1 comportamento" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q8op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q8" id="q8op2" class="pt1 comportamento" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q8op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q8" id="q8op3" class="pt1 comportamento" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q8op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q8" id="q8op4" class="pt1 comportamento" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q8op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q8" id="q8op5" class="pt1 comportamento" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 9-->
+                                <div class="col-12 questao">
+                                    <h5>Eu sei como me obrigar a poupar.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q9op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q9" id="q9op1" class="pt1 comportamento" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q9op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q9" id="q9op2" class="pt1 comportamento" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q9op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q9" id="q9op3" class="pt1 comportamento" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q9op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q9" id="q9op4" class="pt1 comportamento" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q9op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q9" id="q9op5" class="pt1 comportamento" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 10-->
+                                <div class="col-12 questao">
+                                    <h5>Eu sei como me obrigar a cumprir minhas metas financeiras.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q10op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q10" id="q10op1" class="pt1 comportamento" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q10op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q10" id="q10op2" class="pt1 comportamento" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q10op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q10" id="q10op3" class="pt1 comportamento" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q10op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q10" id="q10op4" class="pt1 comportamento" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q10op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q10" id="q10op5" class="pt1 comportamento" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Liberdade Financeira-->
+                                <!--Questão 11-->
+                                <div class="col-12 questao">
+                                    <h5>Estou garantindo meu futuro financeiro.</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q11op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q11" id="q11op1" class="pt1 liberdade" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q11op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q11" id="q11op2" class="pt1 liberdade" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q11op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q11" id="q11op3" class="pt1 liberdade" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q11op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q11" id="q11op4" class="pt1 liberdade" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q11op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q11" id="q11op5" class="pt1 liberdade" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 12-->
+                                <div class="col-12 questao">
+                                    <h5>O jeito que eu cuido do meu dinheiro me permite aproveitar a vida.</h5>
+                                    <div class="row radio-group ultimo">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q12op1">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q12" id="q12op1" class="pt1 liberdade" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Nada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q12op2">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q12" id="q12op2" class="pt1 liberdade" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pouco
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q12op3">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q12" id="q12op3" class="pt1 liberdade" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais ou menos
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q12op4">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q12" id="q12op4" class="pt1 liberdade" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Muito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label class="radio-label" for="q12op5">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q12" id="q12op5" class="pt1 liberdade" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Totalmente
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Fim da parte 01-->
+                            <!--Início da parte 02-->
+                            <div class="row" id="parte2">
+                                <div class="col-12" id="titulo2">
+                                    <h3>Parte 02</h3>
+                                </div>
+                                <!--Questão 13-->
+                                <div class="col-12 questao">
+                                    <h5>Quais dos produtos e serviços abaixo você ou alguém da sua casa tem?</h5>
+                                    <div class="row checkbox-group">
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op1">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op1" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Conta corrente
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op2">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op2" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Poupança
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op3">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op3" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Cartão de crédito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op4">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op4" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Seguro de casa
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op5">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op5" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Cartão de débito
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op6">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op6" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Financiamento de imóvel
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op7">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op7" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Investimentos (ações, fundos ou títulos)
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op8">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op8" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Previdência privada
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op9">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op9" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Financiamento de veículo (carro, moto, caminhão, etc.)
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op10">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op10" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Título de Capitalização
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op11">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op11" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Seguro saúde/convênio
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op12">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op12" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Financiamento estudantil
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op13">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op13" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Consórcio
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4 opcao">
+                                            <label class="checkbox-label" for="q13op14">
+                                                <span class="checkbox-container">
+                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" name="q13" id="q13op14" class="pt2">
+                                                </span>
+                                                <span class="checkbox-label-content">
+                                                    Seguro de carro
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 14-->
+                                <div class="col-12 questao">
+                                    <h5>Qual é, aproximadamente, a RENDA TOTAL por mês incluindo todos os membros de sua família?</h5>
+                                    <div class="row radio-group">
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op1" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op1" class="pt2" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Até 1 salário
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op2" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op2" class="pt2" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    1 a 2 salários
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op3" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op3" class="pt2" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    2 a 3 salários
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op4" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op4" class="pt2" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    3 a 5 salários
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op5" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op5" class="pt2" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    5 a 10 salários
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op6" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op6" class="pt2" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    10 a 20 salários
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md opcao">
+                                            <label for="q14op7" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q14" id="q14op7" class="pt2" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Mais de 20 salários
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Questão 15-->
+                                <div class="col-12 questao">
+                                    <h5>Qual é o seu grau de instrução?</h5>
+                                    <div class="row radio-group ultimo">
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label for="q15op1" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q15" id="q15op1" class="pt2" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Analfabeto / Fundamental 1 Incompleto
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label for="q15op2" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q15" id="q15op2" class="pt2" value="0">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Fundamental 1 Completo / Fundamental 2 Incompleto 
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label for="q15op3" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q15" id="q15op3" class="pt2" value="1">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Fundamental 2 Completo / Médio Incompleto
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label for="q15op4" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q15" id="q15op4" class="pt2" value="2">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Médio Completo / Superior Incompleto
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label for="q15op5" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q15" id="q15op5" class="pt2" value="3">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Superior Completo
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-2 opcao">
+                                            <label for="q15op6" class="radio-label">
+                                                <span class="radio-container unchecked">
+                                                    <span class="radio-circle"></span>
+                                                    <input type="radio" name="q15" id="q15op6" class="pt2" value="4">
+                                                </span>
+                                                <span class="radio-label-content">
+                                                    Pós-graduação completa
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Fim da parte 02-->
+                            <!--<input type="submit" value="Enviar">-->
+                            <div class="row" id="enviar">
+                                <p id="aviso" hidden><span class="material-symbols-outlined align-middle">error</span> Responda todas as questões para enviar o questionário.</p>
+                                <button type="submit" id="btEnviar" class="btn" disabled>Enviar</button>
+                            </div>
+                        </form>
+                        <div class="row" id="fonte">
+                            <p><b>Fonte</b>: I-SFB/FEBRABAN. Disponível no endereço eletrônico: <a href="https://indice.febraban.org.br/">indice.febraban.org.br</a>.</p>
+                        </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>       
+        <div class="row" id="rodape2">
+            <footer class="simple-footer2">
+                    <div class="footer-bottom d-flex justify-content-between align-items-center">
+                    <img src="../img/logo-clara-reduzida2.png" alt="Logotipo FinUp reduzida" height="50px">
+                    <p>&copy; 2024 FinUp. Todos os direitos reservados.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

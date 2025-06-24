@@ -1,0 +1,647 @@
+:root {
+    /*Paleta de cores principal*/
+	--finup-azul-escuro: #0c2d57;
+	--finup-azul: #2c62a7;
+	--finup-laranja: #fc6736;
+	--finup-amarelo: #ffad60;
+
+    /*Paleta complementar*/
+    --finup-verde-amarelado: #a4a76c;
+    --finup-verde: #49a078;
+    --finup-verde-escuro: #3a7e5e;
+    --finup-laranja-marrom: #c23f13;
+    --finup-vermelho-marrom: #8c1c13;
+    --finup-marrom-escuro: #6a041d;
+
+    /*Box shadows*/
+    --pequena: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    --media: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    --grande: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --suspensao: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    --relevo: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+header {
+    z-index: 1;
+}
+
+/*Estilos gerais da página*/
+#pag-saude-financeira {
+    padding: 2rem;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+/*Seção inicial (quando não há respostas)*/
+#bannerISFB {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+#apresentacaoISFB h2 b{
+    color: var(--finup-azul);
+}
+
+#apresentacaoISFB p {
+    font-size: 20px;
+}
+
+#apresentacaoISFB {
+    padding-right: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.acoes-isfb {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+}
+
+#btRespPrimeiraVez {
+    background-color:hsl(214, 76%, 24%);
+    color: white;
+    font-size: 18px;
+}
+
+#btRespPrimeiraVez:hover {
+    box-shadow: var(--relevo);
+    background-color: var(--finup-azul-escuro);
+    transition: ease-in-out .2s;
+}
+
+#btSaibaMais {
+    border: 1px solid var(--finup-laranja);
+    color: var(--finup-laranja);
+    transition: ease-in-out .2s;
+    font-size: 18px;
+}
+
+#btSaibaMais:hover {
+    color: white;
+    background-color: var(--finup-laranja);
+    box-shadow: var(--relevo);
+    transition: ease-in-out .2s;
+}
+
+#recursosISFB {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    height: 100%;
+    row-gap: 1rem;
+}
+
+.recurso-isfb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    row-gap: 10px;
+}
+
+.recurso-isfb b {
+    color: var(--finup-azul);
+}
+
+.icon-recurso {
+    background-color: var(--finup-laranja);
+    padding: 8px;
+    color: var(--finup-azul-escuro);
+    font-size: 2em !important;
+    font-variation-settings: 'wght' 600;
+    border-radius: 5px;
+    box-shadow: var(--pequena);
+    width: min-content;
+}
+
+/*Seção resumo do resultado*/
+#resultadoISFB {
+    padding-bottom: 2rem;
+    display: none;
+}
+
+#navTabSaudeFin .nav-link {
+    color: var(--finup-azul);
+}
+
+#navTabSaudeFin .nav-link:hover {
+    color: var(--finup-azul-escuro);
+}
+
+.container-tab {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+    min-height: 70vh;
+}
+
+.container-tab h2 {
+    margin-top: 2rem;
+}
+
+#resultadoGeral, .dominio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--media);
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+#resultadoGeral:hover, .dominio:hover {
+    box-shadow: var(--grande);
+}
+
+#resultadoGeral .container-progresso {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    height: 80px;
+}
+
+#resultadoGeral .container-marcador {
+    height: 80px;
+}
+
+.container-progresso {
+    height: 70px;
+    margin-top: 1rem;
+}
+
+.container-marcador {
+    height: 70px;
+    width: 100%;
+    display: flex;
+}
+
+.barra-progresso {
+    content: "";
+    background-image: linear-gradient(to right, #8c1c13, #c23f13, #ff9633, #49a078, #3a7e5e);
+    height: 50px;
+    border-radius: 30px;
+    box-shadow: var(--relevo);
+}
+
+.marcador {
+    content: "";
+    width: 3px;
+    border-radius: 20px;
+    background: var(--finup-azul-escuro);
+    position: relative;
+}
+
+.txtMarcador {
+    width: 100%;
+    position: relative;
+    text-align: end;
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+.dominio .barra-progresso {
+    height: 40px;
+}
+
+#resultadoDominios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 2rem;
+}
+
+.titulo-dominio {
+    display: flex;
+    justify-content: space-between;
+}
+
+#btRespNovamente {
+    color: var(--finup-azul);
+    font-size: 20px;
+    text-decoration: none;
+    text-align: end;
+}
+
+#btRespNovamente:hover {
+    font-size: 22px;
+    transition: ease-in-out 0.5s;
+    color: var(--finup-azul-escuro);
+}
+
+/*Seção análise*/
+#containerAnalise h4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#analiseGeral, #comparacaoDominios {
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.titulo-faixa {
+    text-align: center;
+    font-weight: 600;
+}
+
+.label-saude-fin {
+    color: white;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+}
+
+#analiseRuim .label-saude-fin {
+    background-color: var(--finup-vermelho-marrom);
+}
+
+#analiseMuitoBaixa .label-saude-fin {
+    background-color: var(--finup-laranja-marrom);
+}
+
+#analiseBaixa .label-saude-fin {
+    background-color: var(--finup-laranja);
+}
+
+#analiseOk .label-saude-fin {
+    background-color: var(--finup-amarelo);
+    color: black;
+}
+
+#analiseBoa .label-saude-fin {
+    background-color: var(--finup-verde-amarelado);
+}
+
+#analiseMuitoBoa .label-saude-fin {
+    background-color: var(--finup-verde);
+}
+
+#analiseOtima .label-saude-fin {
+    background-color: var(--finup-verde-escuro);
+}
+
+.conteudo-faixa {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    box-shadow: var(--media);
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.conteudo-faixa:hover {
+    box-shadow: var(--grande);
+}
+
+.conteudo-faixa ul{
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+#comparacaoDominios {
+    display: flex;
+    row-gap: 1.5rem;
+}
+
+.comparacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: var(--pequena);
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.comparacao:hover {
+    box-shadow: var(--media);
+}
+
+.dominio-comp {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.dominio-comp, .dominio-recomend {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#recomendacoes .list-group {
+    box-shadow: var(--media);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+
+#recomendacoes .list-group:hover {
+    box-shadow: var(--grande);
+}
+
+.icon-recomend {
+    font-variation-settings: 'FILL' 1;
+    font-size: 40px !important;
+}
+
+#itemHab .icon-recomend {
+    color: var(--finup-azul);
+}
+
+#itemComp .icon-recomend {
+    color: var(--finup-laranja);
+}
+
+#itemSeg .icon-recomend {
+    color: var(--finup-amarelo);
+}
+
+#itemLib .icon-recomend {
+    color: var(--finup-verde);
+}
+
+.recomendacao {
+    display: flex !important;
+    column-gap: 1rem;
+    align-items: center;
+}
+
+/*Seção progresso*/
+#progresso {
+    display: flex;
+    row-gap: 2rem;
+}
+
+#chartContainer, #progressoVazio {
+    box-shadow: var(--media);
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: none;
+}
+
+#chartContainer:hover, #progressoVazio:hover {
+    box-shadow: var(--grande);
+}
+
+#chartContainer {
+    height: 500px;
+}
+
+#progressoVazio a {
+    text-decoration: none;
+    color: var(--finup-laranja);
+    font-weight: 500;
+}
+
+/*Seção histórico*/
+#historico {
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: var(--media);
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+#historico:hover {
+    box-shadow: var(--grande);
+}
+
+#navDataHistorico {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+#navDataHistorico button {
+    border: 1px solid var(--finup-azul-escuro);
+    background-color: white;
+    border-radius: 5px;
+    color: var(--finup-azul-escuro);
+    width: 90%;
+}
+
+#navDataHistorico button:hover {
+    box-shadow: var(--pequena);
+}
+
+#navDataHistorico .active {
+    background-color: var(--finup-azul-escuro);
+    color: white;
+    transition: ease-in-out 0.5s;
+}
+
+#btAddResposta {
+    text-decoration: none;
+    text-align: center;
+    width: 90%;
+    color: var(--finup-azul);
+    border: 1px dashed var(--finup-azul);
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#btAddResposta:hover {
+    color: var(--finup-azul-escuro);
+    border: 1px solid var(--finup-azul-escuro);
+    transition: ease-in-out 0.5s;
+}
+
+#btAddResposta span {
+    font-size: 18px;
+}
+
+#historicoContainer {
+    overflow-x: auto;
+    padding-left: 2rem;
+    opacity: 1;
+}
+
+table {
+    width: 100%;
+}
+
+table.collapsed {
+    opacity: 0;
+}
+
+#historicoContainer .collapsing {
+    -webkit-transition: none;
+    transition: none;
+    opacity: 0;
+}
+
+.collapse.show {
+    -webkit-transition: none;
+    transition: ease-in-out 0.5s;
+    opacity: 1;
+    width: 100%;
+}
+
+/*Seção mais informações sobre o índice*/
+#introducaoIndice a {
+    margin-top: 2rem;
+    text-decoration: none;
+    color: var(--finup-azul);
+}
+
+#introducaoIndice a:hover {
+    font-size: 18px;
+    transition: ease-in-out 0.2s;
+}
+
+#definicaoSaudeFin {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    row-gap: 2rem;
+}
+
+.topico-definicao {
+    display: flex;
+    column-gap: 1rem;
+    padding: 1rem;
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: var(--media);
+    font-size: 18px;
+}
+
+.topico-definicao:hover, .sobre-dominio:hover {
+    box-shadow: var(--grande);
+}
+
+.icon-definicao {
+    font-size: 3em !important;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.texto-topico {
+    font-weight: 500;
+}
+
+#topico-1, #cardCompHab {
+    background-color: rgba(44, 98, 167, 0.3);
+}
+
+#topico-1 .icon-definicao {
+    color: hsl(214, 58%, 85%);
+    background-color: var(--finup-azul);
+}
+
+#topico-2, #cardCompComp {
+    background-color: rgba(252, 103, 54, 0.3);
+}
+
+#topico-2 .icon-definicao {
+    color: hsl(15, 97%, 90%);
+    background-color: var(--finup-laranja);
+    font-variation-settings: 'wght' 900;
+}
+
+#topico-3, #cardCompSeg {
+    background-color: rgba(255, 173, 96, 0.3);
+}
+
+#topico-3 .icon-definicao {
+    color: hsl(29, 100%, 95%);
+    background-color: var(--finup-amarelo);
+    padding: 7px;
+}
+
+#topico-4, #cardCompLib {
+    background-color: rgba(73, 160, 120, 0.3);
+}
+
+#topico-4 .icon-definicao {
+    color: hsl(152, 37%, 85%);
+    background-color: var(--finup-verde);
+}
+
+#definicaoDominios {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    align-content: stretch;
+}
+
+.sobre-dominio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: var(--media);
+    width: 95%;
+    height: 95%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.icon-dominio {
+    font-size: 5em !important;
+    font-variation-settings: 'FILL' 1;
+    color: #888;
+}
+
+.nome-dominio {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: white;
+}
+
+.info-dominio {
+    font-size: 17px;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+#sobreHab .nome-dominio {
+    background-color: var(--finup-azul);
+}
+
+#sobreComp .nome-dominio {
+    background-color: var(--finup-laranja);
+}
+
+#sobreSeg .nome-dominio {
+    background-color: var(--finup-amarelo);
+    color: black;
+}
+
+#sobreLib .nome-dominio {
+    background-color: var(--finup-verde);
+    color: ba;
+}
+
+/*Fonte do I-SFB*/
+#fonte {
+    text-align: center;
+    font-size: 110%;
+    padding-top: 1rem;
+}
+
+#fonte a {
+    color: var(--finup-azul);
+}
+
+#fonte a:hover {
+    color: var(--finup-azul-escuro);
+}

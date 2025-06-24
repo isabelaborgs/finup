@@ -1,0 +1,273 @@
+:root {
+    --pequena: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    --media: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    --grande: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --suspensao: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    --relevo: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#questionario-saude-financeira {
+    padding: 3rem;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#voltar {
+    margin-bottom: 1rem;
+}
+
+#btVoltar {
+    border: 1px solid #0c2d57;
+    color: #0c2d57;
+}
+
+#btVoltar:hover {
+    background-color: #eee;
+}
+
+#apresentacao-questionario {
+    display: flex;
+    text-align: center;
+    margin-bottom: 6rem;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: var(--grande);
+    background-color: white;
+    color: #0c2d57;
+}
+
+#titulo {
+    font-size: 3em;
+    font-weight: 650;
+    line-height: 1.2;
+}
+
+#call-to-action {
+    margin-bottom: 1.5em;
+}
+
+#btArrow {
+    height: 50px;
+}
+
+#arrow {
+    font-size: 2.5rem;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 600,
+        'GRAD' 0,
+        'opsz' 24;
+    background-color: #fc6736;
+    color: #0c2d57;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: var(--relevo);
+    transition: 0.2s;
+}
+
+#arrow:hover {
+    font-size: 3rem;
+}
+
+#isfb {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+#parte1, #parte2 {
+    display: flex;
+    row-gap: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--grande);
+}
+
+#titulo1, #titulo2 {
+    width: 100%;
+    background-color: #0c2d57;
+    color: white;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: var(--relevo);
+}
+
+.questao h5 {
+    font-weight: 600;
+    color: #0c2d57;
+}
+
+.questao h4 {
+    font-weight: 700;
+    color: #fc6736;
+    text-align: center;
+}
+
+.radio-group, .checkbox-group {
+    display: flex;
+}
+
+.radio-label input, .checkbox-label input {
+    display: none;
+}
+
+.radio-label:hover .radio-circle, .checkbox-label:hover .checkbox {
+    box-shadow: var(--media); 
+}
+
+.radio-group {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 1rem;
+    border-bottom: 1px solid rgba(12, 45, 87, 0.3);
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.radio-group.ultimo {
+    border: none;
+}
+
+.radio-label{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 0.5rem;    
+    cursor: pointer;
+}
+
+.radio-circle {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 4px solid #0c2d57;
+    border-radius: 50%;
+    box-shadow: var(--pequena);
+}
+
+.checked .radio-circle::after{
+    content: "";
+    margin: 5px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: #fc6736;
+    border-radius: 50%;
+    box-shadow: var(--relevo);
+}
+
+.radio-label:hover .unchecked .radio-circle::after {
+    content: "";
+    margin: 5px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: #fc6736;
+    border-radius: 50%;
+    box-shadow: var(--pequena);
+
+}
+
+#parte2 .radio-label-content {
+    max-width: 120%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.checkbox-group {
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    row-gap: 10px;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(12, 45, 87, 0.3);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 3px solid #0c2d57;
+    border-radius: 4px;
+    box-shadow: var(--pequena);
+}
+
+.checked .checkbox::after {
+    content: "";
+    margin: 5px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: #fc6736;
+    border-radius: 3px;
+    box-shadow: var(--relevo);
+}
+
+.checkbox-label:hover .unchecked .checkbox::after {
+    content: "";
+    margin: 5px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: #fc6736;
+    border-radius: 3px;
+    box-shadow: var(--pequena);
+}
+
+#aviso {
+    text-align: center;
+    color: red;
+}
+
+#btEnviar {
+    background-color: #0c2d57;
+    color: white;
+    font-size: 1.5em;
+    box-shadow: var(--relevo);
+    --bs-btn-border-width: 0;
+    transition: ease-out .2s;
+}
+
+#btEnviar:enabled:hover {
+    font-size: 1.8em;
+    transition: ease-in .2s;
+}
+
+#fonte {
+    text-align: center;
+    font-size: 110%;
+}
+
+@media screen and (min-width: 768px) {
+    .radio-group::before {
+        content: "";
+        display: block;
+        height: 6px;
+        width: 100%;
+        position: relative;
+        top: 40px;
+        background: #0c2d57;
+        z-index: -1;
+        border-radius: 10px;
+        box-shadow:var(--relevo);
+    }
+
+    #titulo {
+        font-size: 4.5em;
+    }
+}
