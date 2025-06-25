@@ -54,7 +54,7 @@ function exibirDados() {
     let dadosDespesas = readDespesasMesAtual(despesas);
     let dadosLimites = Object.entries(readLimites());
     let dadosMetas = readMetas();
-    let isGuiaVisivel = readGuiaDesativado();
+    let isGuiaDesativado = readGuiaDesativado();
 
     if (dadosSaudeFin.length > 0) {
         secaoSaudeFin.style.display = 'block';
@@ -84,7 +84,7 @@ function exibirDados() {
         checkLimites.classList.add('feito');
     }
 
-    if (isGuiaVisivel) {
+    if (isGuiaDesativado) {
         guiaInApp.style.display = 'none';
     }
 }

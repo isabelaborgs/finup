@@ -148,23 +148,6 @@ function excluirMeta(id) {
   }
 }
 
-// function toggleContent() {
-//   const checkbox = document.getElementById("toggleCheckbox");
-//   const descricaoDiv = document.getElementById("descricao");
-
-//   if (checkbox.checked) {
-//     descricaoDiv.style.display = "block";
-//   } else {
-//     descricaoDiv.style.display = "none";
-//   }
-// }
-
-// document.getElementById("modalAddTask").addEventListener("show.bs.modal", function () {
-//   document.getElementById("toggleCheckbox").checked = false;
-//   document.getElementById("descricao").style.display = "none";
-// });
-
-
 function metaConcluida(id) {
 
   const metas = JSON.parse(localStorage.getItem("metas")) || [];

@@ -1,21 +1,10 @@
 :root {
-	--azul-escuro-principal: #0c2d57;
-	--azul-intermed-secundario: #2c62a7;
-	--laranja-principal: #fc6736;
-	--amarelo-secundario: #ffad60;
-	--azul-claro-suave: #eae5ff;
-    --pequena: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    --media: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    --grande: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    --suspensao: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    --relevo: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
-
-#pagina-metas {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    row-gap: 2rem;
+	--finup-azul-escuro: #0c2d57;
+	--finup-azul: #2c62a7;
+	--finup-laranja: #fc6736;
+	--finup-amarelo: #ffad60;
+	--finup-azul-claro: #eae5ff;
+    --sombra-padrao: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .cabecalho {
@@ -26,28 +15,12 @@
 	row-gap: 1rem;
 }
 
-#buttonCriar {
-	background-color: var(--azul-escuro-principal);
-	color: white;
-	font-size: 1.2em;
-    transition: ease-out .5s;
-}
-
-#buttonCriar:hover {
-	box-shadow: var(--media);
-}
-
 #formMetas {
 	row-gap: 1rem;
 }
 
 #btnAtualizar {
 	display: none;
-}
-
-#btnAtualizar, #btnSalvar {
-	background-color: var(--azul-escuro-principal);
-	color: white;
 }
 
 .filtros {
@@ -57,9 +30,13 @@
 	row-gap: 0.8rem;
 }
 	
+#metasAdicionadas {
+	row-gap: 2rem;
+}
+
 #metasAdicionadas .card {
 	border-radius: 10px;
-	box-shadow: var(--pequena);
+	box-shadow: var(--sombra-padrao);
 	border: none;
 	transition: 0.3s;
 	overflow: hidden;
@@ -69,7 +46,6 @@
 
 #metasAdicionadas .card:hover {
 	transform: translateY(-3px);
-	box-shadow: var(--media);
 }
 
 .card-body {

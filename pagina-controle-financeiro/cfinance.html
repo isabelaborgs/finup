@@ -112,9 +112,8 @@
                         </nav>
                     </header>
                     <main>
-                        <div class="container-fluid" id="controle-financeiro">
+                        <div class="content-wrapper" id="controle-financeiro">
                             <h1>Controle financeiro</h1>
-
                             <div class="transaction-container mb-3" id="add-new">
                                 <h3>Adicionar nova transação</h3>
                                 <div  id="add-transaction-form">
@@ -143,7 +142,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-2 col-xl-1">
-                                                    <button id="submit-transaction" class="btn" type="submit">+</button>
+                                                    <button id="submit-transaction" class="btn btn-primary-finup" type="submit">+</button>
                                                 </div>
                                                 <div class="col-12" id="error-message" style="color: red; display: none; margin-left: 10px;"></div>
                                             </div>
@@ -154,7 +153,7 @@
                                 <div class="transaction-container" id="income-container">
                                     <h3>Receitas</h3>
                                     <div class="category" data-category="Salário e Outras Rendas">
-                                        <div class="category-details">
+                                        <div class="category-details table-responsive">
                                             <table class="static-table table">
                                                 <thead>
                                                     <tr>
@@ -182,31 +181,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-casa">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-casa" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-casa" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Compras">
@@ -218,31 +218,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-compras">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-compras" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-compras" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Educação">
@@ -254,31 +255,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-educacao">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-educacao" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-educacao" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Lazer">
@@ -290,31 +292,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-lazer">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-lazer" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-lazer" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Saúde">
@@ -326,31 +329,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-saude">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-saude" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-saude" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Transporte">
@@ -362,31 +366,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-transporte">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-transporte" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-transporte" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Viagem">
@@ -398,31 +403,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-viagem">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-viagem" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-viagem" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="category" data-category="Outros">
@@ -434,31 +440,32 @@
                                             <i class="bi bi-chevron-down"></i>
                                         </a>
                                         <div class="category-details collapse show" id="categoria-outras">
-                                            <table class="limit-table">
-                                                <tr>
-                                                    <td>Estabelecer Limite:</td>
-                                                    <td><input type="number" class="form-control limit-value" placeholder="Valor"></td>
-                                                    <td>
-                                                        <select class="form-select limit-period">
-                                                            <option value="semanal">Semanal</option>
-                                                            <option value="mensal">Mensal</option>
-                                                            <option value="anual">Anual</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="static-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Descrição</th>
-                                                        <th>Valor</th>
-                                                        <th>Data</th>
-                                                        <th>Status</th>
-                                                        <th>Ação</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="static-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Descrição</th>
+                                                            <th>Valor</th>
+                                                            <th>Data</th>
+                                                            <th>Status</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <label for="limite-outros" class="col-form-label">Limite de gastos</label>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="number" id="limite-outros" class="form-control limit-value">
+                                                        <span class="input-group-text">por mês</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

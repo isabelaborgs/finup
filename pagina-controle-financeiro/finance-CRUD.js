@@ -53,10 +53,9 @@ function removeTransaction(id) {
 }
 
 // Salva e carrega o limite de gastos
-
-function saveLimit(category, limitValue, limitPeriod) {
+function saveLimit(category, limitValue) {
     const limits = JSON.parse(localStorage.getItem("limits")) || {};
-    limits[category] = { limitValue, limitPeriod };
+    limits[category] = limitValue;
     localStorage.setItem("limits", JSON.stringify(limits));
 }
 
@@ -66,12 +65,10 @@ function loadLimits() {
     document.querySelectorAll(".category").forEach(categoryDiv => {
         const category = categoryDiv.getAttribute("data-category");
         if (limits[category]) {
-            const { limitValue, limitPeriod } = limits[category];
+            const limitValue = limits[category];
             const limitInput = categoryDiv.querySelector(".limit-value");
-            const periodSelect = categoryDiv.querySelector(".limit-period");
-            if (limitInput && periodSelect) {
+            if (limitInput) {
                 limitInput.value = limitValue;
-                periodSelect.value = limitPeriod;
             }
         }
     });
@@ -80,12 +77,10 @@ function loadLimits() {
 // Ao alterar o limite, salva no armazenamento local
 document.querySelectorAll(".category").forEach(categoryDiv => {
     const limitInput = categoryDiv.querySelector(".limit-value");
-    const periodSelect = categoryDiv.querySelector(".limit-period");
     const category = categoryDiv.getAttribute("data-category");
 
-    if (limitInput && periodSelect) {
-        limitInput.addEventListener("input", () => saveLimit(category, limitInput.value, periodSelect.value));
-        periodSelect.addEventListener("change", () => saveLimit(category, limitInput.value, periodSelect.value));
+    if (limitInput) {
+        limitInput.addEventListener("input", () => saveLimit(category, limitInput.value));
     }
 });
 

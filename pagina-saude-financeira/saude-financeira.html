@@ -109,10 +109,8 @@
                     </nav>
                 </header>
                 <main>
-                    <div class="container-fluid" id="pag-saude-financeira">
-                        <div class="row" id="tituloSaudeFinanceira">
-                            <h1>Sua saúde financeira</h1>
-                        </div>
+                    <div class="content-wrapper" id="pag-saude-financeira">
+                        <h1>Sua saúde financeira</h1>
                         <!--Seção exibida quando não há resposta-->
                         <div class="row" id="pagSaudeFinInicial">
                             <!--Banner apresentando o I-SFB-->
@@ -123,8 +121,8 @@
                                         <p>Responda o Índice de Saúde Financeira para avaliar o seu nível de bem-estar financeiro e entender como melhorar.</p>
                                     </div>
                                     <div class="acoes-isfb">
-                                        <a href="../pagina-questionario/questionario.html" class="btn" role="button" id="btRespPrimeiraVez"><span>Responder questionário</span></a>
-                                        <a href="#saibaMais" data-bs-toggle="collapse" aria-expanded="false" aria-controls="saibaMais" class="btn" role="button" id="btSaibaMais"><span class="material-symbols-outlined align-middle">more_vert</span>Saiba mais</a>
+                                        <a href="../pagina-questionario/questionario.html" class="btn btn-lg btn-primary-finup" role="button" id="btRespPrimeiraVez"><span>Responder questionário</span></a>
+                                        <a href="#saibaMais" data-bs-toggle="collapse" aria-expanded="false" aria-controls="saibaMais" class="btn btn-lg btn-secondary-outlined-finup" role="button" id="btSaibaMais"><span class="material-symbols-outlined align-middle">more_vert</span>Saiba mais</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
@@ -150,15 +148,15 @@
                                 </div>
                             </section>
                             <!--Mais informações sobre o I-SFB-->
-                            <section class="row container-tab collapse" id="saibaMais">
+                            <section class="container-tab collapse" id="saibaMais">
                                 <hr>
-                                    <div class="row" id="introducaoIndice">
+                                    <div class="bloco-saiba-mais" id="introducaoIndice">
                                         <h3>Sobre o Índice de Saúde Financeira</h3>
                                         <h5>O <b>Índice de Saúde Financeira do Brasileiro (I-SFB)</b> é uma ferramenta desenvolvida por especialistas da FEBRABAN em cooperação técnica com o Banco Central. O I-SFB faz um diagnóstico geral da saúde e bem-estar financeiros e aponta o que pode ser melhorado.</h5>
                                         <a href="https://indice.febraban.org.br/" target="_blank">Acesse a página oficial do I-SFB para mais informações sobre o desenvolvimento da ferramenta <span class="material-symbols-outlined align-middle">open_in_new</span></a>
                                     </div>
                                     <hr>
-                                    <div class="row" id="definicaoSaudeFin">
+                                    <div class="row bloco-saiba-mais" id="definicaoSaudeFin">
                                         <div class="col-12">
                                             <h4>Ter uma boa saúde financeira indica que você: </h4>
                                         </div>
@@ -685,7 +683,7 @@
                     </div>
                     <hr>
                     <!--Fonte-->
-                    <div class="row" id="fonte">
+                    <div class="text-center px-2" id="fonte">
                         <p><b>Fonte</b>: I-SFB/FEBRABAN. Disponível no endereço eletrônico: <a href="https://indice.febraban.org.br/">indice.febraban.org.br</a>.</p>
                     </div>
                 </main>

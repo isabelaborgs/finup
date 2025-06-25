@@ -6,21 +6,46 @@
 
 /* Paleta de cores principal */
 :root {
-	--azul-escuro-principal: #0c2d57;
-	--azul-intermed-secundario: #2c62a7;
-	--laranja-principal: #fc6736;
-	--amarelo-secundario: #ffad60;
-	--azul-claro-suave: #eae5ff;
+	--finup-azul-escuro: #0c2d57;
+	--finup-azul-medio: #2c62a7;
+	--finup-laranja: #fc6736;
+	--finup-amarelo: #ffad60;
+	--finup-azul-claro: #eae5ff;
+	--finup-azul-hover: #071d38;
+	--finup-laranja-hover: #b4360c;
 }
 
 /* Personalização de variáveis do Bootstrap */
 .dropdown-menu#sidebar-dropdown {
-	--bs-dropdown-bg: var(--azul-escuro-principal);
+	--bs-dropdown-bg: var(--finup-azul-escuro);
 	--bs-dropdown-link-hover-bg:#ffffff09;
 }
 
 div#content.container-fluid, div#wrapper.container-fluid, div#principal.row, div#rodape2.row {
 	--bs-gutter-x: 0;
+}
+
+main {
+	min-height: 85vh;
+}
+
+.content-wrapper {
+	padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+@media screen and (min-width: 500px) {
+	.content-wrapper {
+		padding: 3rem 2rem;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.content-wrapper {
+		padding: 3rem;
+	}
 }
 
 /* Ícones do Google Fonts */
@@ -32,21 +57,101 @@ div#content.container-fluid, div#wrapper.container-fluid, div#principal.row, div
     'opsz' 24
 }
 
+
+/* Botões */
+.btn.btn-primary-finup {
+	background-color: var(--finup-azul-escuro) !important;
+	border: solid 1px var(--finup-azul-escuro) !important;
+	color: white !important;
+	transition: ease-in-out .2s;
+}
+
+.btn.btn-primary-finup:hover {
+	background-color: var(--finup-azul-hover) !important;
+	border: solid 1px var(--finup-azul-hover) !important;
+	color: white !important;
+}
+
+.btn-primary-outlined-finup {
+	border: solid 1px var(--finup-azul-escuro) !important;
+	color: var(--finup-azul-escuro) !important;
+	transition: ease-in-out .2s !important;
+}
+
+.btn-primary-outlined-finup:hover {
+	background-color: var(--finup-azul-escuro) !important;
+	color: white !important;
+}
+
+.btn-secondary-finup {
+	background-color: var(--finup-laranja) !important;
+	border: solid 1px var(--finup-laranja) !important;
+	color: white !important;
+	transition: ease-in-out .2s !important;
+}
+
+.btn-secondary-finup:hover {
+	background-color: var(--finup-laranja-hover) !important;
+	border: solid 1px var(--finup-laranja-hover) !important;
+}
+
+.btn-secondary-outlined-finup {
+	border: solid 1px var(--finup-laranja) !important;
+	color: var(--finup-laranja) !important;
+	transition: ease-in-out .2s !important;
+}
+
+.btn-secondary-outlined-finup:hover {
+	background-color: var(--finup-laranja) !important;
+	color: white !important;
+}
+
+#index-wrapper {
+	background-color: var(--finup-azul-escuro);
+	min-height: 100%;
+	padding-top: 6rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#index-wrapper img {
+	width: 100%;
+}
+
+
 /* Cabeçalho */
 header {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     position: sticky;
     top: 0;
-	background-color: var(--azul-escuro-principal);
+	background-color: var(--finup-azul-escuro);
+	z-index: 1;
+}
+
+@media screen and (min-width: 992px) {
+	header {
+		display: flex; 
+		justify-content: end; 
+		background-color: white; 
+		padding: 10px;
+	}
 }
 
 /* Barra lateral */
 #lateral, .offcanvas-header, .offcanvas-body {
-	background-color: var(--azul-escuro-principal);
+	background-color: var(--finup-azul-escuro);
+}
+
+@media screen and (min-width: 992px) {
+	#lateral {
+		background-color: var(--finup-azul-escuro);
+	}
 }
 
 #logotipo-sidebar {
-    max-width: 200px;
+    max-width: 150px;
+	margin-bottom: 2rem;
 }
 
 #logotipo-sidebar img {
@@ -55,6 +160,17 @@ header {
     object-fit: contain;
 }
 
+@media screen and (min-width: 1200px) {
+	#logotipo-sidebar {
+		max-width: 200px;
+	}
+
+	#sidebar-nav {
+	padding-left: 2rem;
+	}
+}
+
+
 #sidebar-nav {
     position: fixed;
     top: 0;
@@ -62,12 +178,8 @@ header {
 	padding-left: 1.5rem;
 }
 
-#logotipo-sidebar {
-	margin-bottom: 2rem;
-}
-
-.nav-link:hover {
-    background-color: #ffffff0c;
+.nav-link:hover span{
+    color: var(--finup-laranja);
 }
 
 .offcanvas-body span {
@@ -81,15 +193,9 @@ header {
 	font-size: 110%;
 }
 
-/* Conteúdo da página */
-main {
-	padding: 2em;
-	min-height: 85vh;
-}
-
 /*Rodapé*/
 #rodape2 {
-	background-color: #2c62a7; 
+	background-color: var(--finup-azul-medio); 
 	width: 100%; 
 	padding: 20px; 
 	color: #fff;
@@ -107,6 +213,17 @@ main {
   
 .simple-footer2 img {
 	max-height: 50px;
+}
+
+@media (max-width: 768px) {
+	.simple-footer2 {
+		flex-direction: column; 
+		text-align: center; 
+	}
+  
+	.simple-footer2 img {
+		margin-bottom: 10px; 
+	}
 }
   
 .footer-bottom p {
@@ -182,41 +299,7 @@ main {
 	color: #888;
 }
 
-/* Media queries */
-@media (max-width: 768px) {
-	.simple-footer2 {
-		flex-direction: column; 
-		text-align: center; 
-	}
-  
-	.simple-footer2 img {
-		margin-bottom: 10px; 
-	}
-}
-
-/* Telas large (lg) */
-@media screen and (min-width: 992px) {
-	#lateral {
-		background-color: var(--azul-escuro-principal);
-	}
-	
-	header {
-		display: flex; 
-		justify-content: end; 
-		background-color: white; 
-		padding: 10px;
-	}
-}
-
-/*Telas extra-large*/
-@media screen and (min-width: 1200px) {
-	#logotipo-sidebar {
-		max-width: 250px;
-	}
-}
-
 @media (max-width: 992px) {
-    /* Mudar cor do sino para branco */
     .nav-item .nav-link i.bi-bell {
         color: #fff;
     }
