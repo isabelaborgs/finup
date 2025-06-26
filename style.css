@@ -33,7 +33,7 @@ main {
 	padding: 3rem 1rem;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 1rem;
 }
 
 @media screen and (min-width: 500px) {

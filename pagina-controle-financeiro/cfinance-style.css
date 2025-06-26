@@ -1,15 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-/* Estilos gerais */
-body {
-    background-color: #e0e8f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /* Paleta de cores principal */
 :root {
 	--finup-azul-escuro: #0c2d57;
@@ -18,13 +6,6 @@ body {
 	--finup-amarelo: #ffad60;
 	--finup-azul-claro: #eae5ff;
 }
-
-/* #controle-financeiro {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    row-gap: 2rem;
-} */
 
 /* Botões */
 .header-buttons {
@@ -76,12 +57,12 @@ tr button:hover {
 .transaction-container {
     display: flex;
     flex-direction: column;
-    row-gap: 1.5rem;
+    row-gap: 1.2rem;
     overflow: hidden;
-    padding: 1rem;
 }
 
 .category {
+    margin: 0.2rem;
     padding: 1.2rem 1.5rem;
     border-radius: 8px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
