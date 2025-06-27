@@ -10,7 +10,7 @@
 * [Tecnologias](#tecnologias)
 * [Funcionalidades](#funcionalidades)
 * [Demonstração da solução](#demonstração-da-solução)
-* [Como acessar](#como-acessar)
+* [Como acessar e utilizar a aplicação](#como-acessar-e-utilizar-a-aplicação)
 * [Contribuidores](#contribuidores)
   * [Minhas contribuições para o projeto](#minhas-contribuições-para-o-projeto)
 
@@ -49,11 +49,19 @@
 
 ## Demonstração da solução
 
-Em breve será adicionado o vídeo de demonstração da solução.
+![mockup-finup](https://github.com/user-attachments/assets/231424c9-aa27-4752-b9de-e5a987748267)
 
-## Como acessar
+https://github.com/user-attachments/assets/f3c567e5-2ebb-452c-9406-b19eb6ce6bde
 
-Acesse a aplicação e experimente diretamente todas as suas funciondalidades [clicando aqui](https://isabelaborgs.github.io/finup/).
+
+## Como acessar e utilizar a aplicação
+
+* **Acesse a aplicação** e experimente diretamente todas as suas funcionalidades [clicando aqui](https://isabelaborgs.github.io/finup/)
+* **Gerenciando receitas e despesas**: Clique na opção "Controle Financeiro" na barra de navegação e adicione receitas e despesas com descrição, valor, data prevista e categoria. Elas serão exibidas em suas respectivas categorias na página, e você pode marcá-las como concluídas ou excluí-las.
+* **Acompanhando metas financeiras**: Clique na opção "Metas" na barra de navegação e adicione metas financeiras  com o valor desejado, valor alcançado, categoria, prioridade e descrição. Você pode atualizar o valor alcançado conforme progride na meta e assinar a meta como concluída ou excluí-la.
+* **Avaliando a saúde financeira**: Clica na opção "Saúde Financeira" na barra de navegação e responda ao questionário de saúde financeira (ISF-B). O seu resultado com pontuação, classificação e análise detalhada serão exibidos após a primeira resposta ao questionário. Você pode respondê-lo novamente quantas vezes quiser para visualizar seu progresso na saúde financeira. Quando você responder mais de uma vez, você poderá acessar o histórico com todas as suas pontuações e visualizar um gráfico com seu progresso em cada domínio.
+* **Visualizando os dados na dashboard**: Clique na opção "Dashboard" ou na logotipo na barra de navegação e visualize as métricas dos dados cadastrados por você.
+* **Armazenamento dos dados**: As informações inseridas na aplicação serão aramazenadas apenas no local storage do navegador utilizado por você, logo não poderão ser acessadas fora do seu navegador e serão permanentemente excluídas ao excluir o histórico.
 
 ## Contribuidores
 
