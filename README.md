@@ -51,7 +51,8 @@
 
 ![mockup-finup](https://github.com/user-attachments/assets/231424c9-aa27-4752-b9de-e5a987748267)
 
-https://github.com/user-attachments/assets/f3c567e5-2ebb-452c-9406-b19eb6ce6bde
+
+https://github.com/user-attachments/assets/2306b37e-df61-4fe1-9fd0-562958aba316
 
 
 ## Como acessar e utilizar a aplicação
